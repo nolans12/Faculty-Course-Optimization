@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.7.25)  6 OCT 2024 23:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.7.25)  6 OCT 2024 23:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/Users/nolan/Desktop/Faculty-Course-Optimization/LaTeX Writeup/main"
-(/Users/nolan/Desktop/Faculty-Course-Optimization/LaTeX Writeup/main.tex
+**"/Users/nolan/Desktop/Faculty-Course-Optimization/LaTeX Writeup/writeup"
+(/Users/nolan/Desktop/Faculty-Course-Optimization/LaTeX Writeup/writeup.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
 (/usr/local/texlive/2024/texmf-dist/tex/latex/base/article.cls
@@ -128,8 +128,8 @@ LaTeX Info: Redefining \] on input line 2954.
 File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count277
 \l__pdf_internal_box=\box53
-) (./main.aux)
-\openout1 = `main.aux'.
+) (./writeup.aux)
+\openout1 = `writeup.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
@@ -226,7 +226,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 40--41
 
  []
 
-[2] [3] (./main.aux)
+[2] [3] (./writeup.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -234,14 +234,14 @@ L3 programming layer <2024-02-20>
  ) 
 Here is how much of TeX's memory you used:
  3067 strings out of 474116
- 48892 string characters out of 5743682
+ 48928 string characters out of 5743682
  1937187 words of memory out of 5000000
  25407 multiletter control sequences out of 15000+600000
  562837 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 61i,6n,69p,380b,199s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 61i,6n,69p,383b,199s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on main.pdf (3 pages, 128006 bytes).
+Output written on writeup.pdf (3 pages, 128006 bytes).
 PDF statistics:
  74 PDF objects out of 1000 (max. 8388607)
  44 compressed objects within 1 object stream

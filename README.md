@@ -6,15 +6,13 @@ This project implements an algorithm to optimize faculty course assignments base
 
 ## Table of Contents
 
-1. [Features](#features)
-2. [Requirements](#requirements)
-3. [Installation](#installation)
-4. [Usage](#usage)
-5. [File Structure](#file-structure)
-6. [Algorithm Description](#algorithm-description)
-7. [Output](#output)
-8. [Contributing](#contributing)
-9. [License](#license)
+1. [Requirements](#requirements)
+2. [Installation](#installation)
+3. [Usage](#usage)
+4. [File Structure](#file-structure)
+5. [Algorithm Description](#algorithm-description)
+6. [Output](#output)
+
 
 ## Requirements
 

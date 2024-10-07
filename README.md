@@ -18,7 +18,7 @@ This project implements an algorithm to optimize faculty course assignments base
 
 ## Requirements
 
-- Python 3.7+
+- Python 3.10+
 - pandas
 - numpy
 - pulp

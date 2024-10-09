@@ -23,9 +23,6 @@ class Faculty:
         Will take the format of [pref_match, pref_matcher] where want to set the preference of pref_matcher to the preference of pref_match
         But, have to deal with daisy chaninig, so while loop until find the next highest preference, if it doesnt exist
         """
-
-        if self.name == "Argrow, Brian":
-            test = 1
         
         pref_match = equiv_array[0]
         pref_matcher = equiv_array[1]

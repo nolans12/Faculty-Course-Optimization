@@ -60,7 +60,7 @@ output_faculty_prefs(faculty_list)
 # We need n, the number of faculty objects that actually have preferences (took the survey)
     # Purge the faculty list of those who didn't take the survey
 faculty_list = [faculty for faculty in faculty_list if len(faculty.preferences) > 0]
-n = len(faculty_list)
+n = len(faculty_list) # TODO: should this be total number of TCs
 
 
 ## Create the optimization instance
@@ -96,7 +96,7 @@ for idx, row in courses.iterrows(): # Each row of the survey
     # Create the decision variables
     for faculty in faculty_list:
         name = faculty.name
-        for j in range(num_splits):
+        for j in range(round(num_splits)):
             x[(name, course, j + 1)] = pulp.LpVariable(f"x_{name}_{course}_{j + 1}", 0, 1, pulp.LpBinary)
 
 
@@ -129,11 +129,11 @@ def cost(faculty, course):
     # If the course is not in the preferences, return a very high cost
     return int(1e25)
 
-# ## Test cost funciton with "Hodgkinson, Bobby", Fall - ASEN 1030: Intro to Computing - Lecture and Lab (teaching 1 section)"
+# # ## Test cost funciton with "Hodgkinson, Bobby", Fall - ASEN 1030: Intro to Computing - Lecture and Lab (teaching 1 section)"
 # for faculty in faculty_list:
-#     if faculty.name == "Hodgkinson, Bobby":
+#     if faculty.name == "Schwartz, Trudy":
 #         break
-# print(cost(faculty, "Fall - ASEN 1030: Intro to Computing - Lecture and Lab"))
+# print(cost(faculty, "Spring - GEEN 1400: Freshman Projects"))
 # Should string match to the (teaching 1 section) preference
 
 
@@ -182,7 +182,7 @@ for faculty in faculty_list:
             constraints.append(split_TC * section * x[key])
 
     # Add the net TC constraint for this faculty
-    prob += pulp.lpSum(constraints) == faculty.TC
+    prob += pulp.lpSum(constraints) >= faculty.TC
 
 
 # Course TC constraint
@@ -219,6 +219,15 @@ for idx, row in courses.iterrows():
 
     # Add the final constraint for this course
     prob += pulp.lpSum(constraints) <= total_TC
+
+
+# # Ensure John Mah teaches Aircraft Design in the fall
+# course_name = "Fall and Spring - ASEN 4018: Senior Projects (Course Director)"
+# faculty_name = "Mah, John"
+# section = 1  # Assuming he teaches one section
+
+# # Create a decision variable for this specific assignment
+# prob += x[(faculty_name, course_name, section)] >= 1
 
 
 # Now, the optimization problem is set up, solve it!

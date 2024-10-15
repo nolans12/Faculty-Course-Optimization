@@ -2,18 +2,22 @@ Faculty,Course,Preference
 "Ahmed, Nisar",Spring - ASEN 3728: Aircraft Dynamics,1
 "Ahmed, Nisar",Spring - ASEN 3801: Vehicle Dynamics and Control Lab (Might be team taught: 1-2 people),1
 "Ahmed, Nisar","Fall and Spring - ASEN 4018: Senior Projects (PAB Member, 8 people)",1
-"Ahmed, Nisar",Fall - ASEN 3801: Vehicle Dynamics and Control Lab (Might be team taught: 1-2 people),1
-"Ahmed, Nisar",Spring - ASEN 2403: Dynamics,1
+"Ahmed, Nisar",Fall - ASEN 3801: Vehicle Dynamics and Control Lab (Might be team taught: 1-2 people),4
+"Ahmed, Nisar",Spring - ASEN 2403: Dynamics,4
 ,,
 "Akos, Dennis",,
 ,,
-"Ali, Hisham",,
+"Ali, Hisham",Spring - ASEN 3713: Thermodynamics and Heat Transfer,1
+"Ali, Hisham",Fall - ASEN 3713: Thermodynamics and Heat Transfer,2
+"Ali, Hisham",Spring - ASEN 4013: Foundations of Propulsion,3
+"Ali, Hisham",Spring - ASEN 3711: Aerodynamics,4
+"Ali, Hisham",Spring - ASEN 2402: Thermodynamics,5
 ,,
 "Argrow, Brian",Fall - ASEN 3711: Aerodynamics,1
 "Argrow, Brian",Spring - ASEN 3711: Aerodynamics,1
 "Argrow, Brian",Fall - ASEN 2402: Thermodynamics,1
-"Argrow, Brian",Spring - ASEN 2402: Thermodynamics,1
-"Argrow, Brian",Fall - ASEN 3728: Aircraft Dynamics,1
+"Argrow, Brian",Spring - ASEN 2402: Thermodynamics,4
+"Argrow, Brian",Fall - ASEN 3728: Aircraft Dynamics,4
 ,,
 "Arquilla, Katya",Spring - ASEN 4128: Human Factors in Engineering and Design,1
 "Arquilla, Katya",Spring - ASEN 3036: Intro to Human Spaceflight,1
@@ -37,7 +41,11 @@ Faculty,Course,Preference
 "Chu, Xinzhao",Spring - ASEN 3802: Aerospace Sciences Lab 2 (Might be team taught: 1-3 people),4
 "Chu, Xinzhao",Spring - ASEN 1009: Undergrad Aerospace Seminar,5
 ,,
-"Clark, Torin",,
+"Clark, Torin",Spring - ASEN 1030: Intro to Computing - Lecture and Lab,1
+"Clark, Torin",Spring - ASEN 3036: Intro to Human Spaceflight,1
+"Clark, Torin",Spring - ASEN 4128: Human Factors in Engineering and Design,1
+"Clark, Torin",Fall - ASEN 3046: Intro to Humans in Aviation,4
+"Clark, Torin",Spring - GEEN 1400: Freshman Projects,4
 ,,
 "Doostan, Alireza",,
 ,,
@@ -60,7 +68,7 @@ Faculty,Course,Preference
 "Glusman, Jeff",Fall - ASEN 2402: Thermodynamics,1
 "Glusman, Jeff",Spring - ASEN 2402: Thermodynamics,1
 "Glusman, Jeff",Fall - ASEN 3802: Aerospace Sciences Lab 2 (Might be team taught: 1-3 people),3
-"Glusman, Jeff",Spring - ASEN 3802: Aerospace Sciences Lab 2 (Might be team taught: 1-3 people),3
+"Glusman, Jeff",Spring - ASEN 3802: Aerospace Sciences Lab 2 (Might be team taught: 1-3 people),4
 "Glusman, Jeff",Fall - ASEN 2401: Statics (teaching 1 section),5
 "Glusman, Jeff",Spring - ASEN 2401: Statics,5
 "Glusman, Jeff",Spring - ASEN 1030: Intro to Computing - Lecture and Lab,7
@@ -75,11 +83,11 @@ Faculty,Course,Preference
 "Hodgkinson, Bobby",Fall - ASEN 1030: Intro to Computing - Lecture and Lab (teaching 1 section),1
 "Hodgkinson, Bobby",Spring - ASEN 1030: Intro to Computing - Lecture and Lab,1
 "Hodgkinson, Bobby","Fall and Spring - ASEN 4018: Senior Projects (PAB Member, 8 people)",1
-"Hodgkinson, Bobby",Fall - GEEN 1400: Freshman Projects,1
-"Hodgkinson, Bobby",Spring - GEEN 1400: Freshman Projects,1
-"Hodgkinson, Bobby",Spring - COEN 1830: Special Topics,1
-"Hodgkinson, Bobby",Fall - COEN 1830: Special Topics,1
-"Hodgkinson, Bobby",Fall - ASEN 1009: Undergrad Aerospace Seminar,1
+"Hodgkinson, Bobby",Fall - GEEN 1400: Freshman Projects,4
+"Hodgkinson, Bobby",Spring - GEEN 1400: Freshman Projects,4
+"Hodgkinson, Bobby",Spring - COEN 1830: Special Topics,4
+"Hodgkinson, Bobby",Fall - COEN 1830: Special Topics,4
+"Hodgkinson, Bobby",Fall - ASEN 1009: Undergrad Aerospace Seminar,4
 ,,
 "Hoke, Charles",Spring - ASEN 4138: Aircraft Design - Lecture and Lab,1
 "Hoke, Charles",Fall - ASEN 4138: Aircraft Design - Lecture and Lab,1
@@ -109,10 +117,10 @@ Faculty,Course,Preference
 "Knudsen, Erik",Fall - ASEN 2401: Statics (teaching 2 sections),1
 "Knudsen, Erik",Fall - ASEN 2401: Statics (teaching 1 section),1
 "Knudsen, Erik",Spring - ASEN 2401: Statics,1
-"Knudsen, Erik",Fall - GEEN 1400: Freshman Projects,1
-"Knudsen, Erik",Spring - GEEN 1400: Freshman Projects,1
-"Knudsen, Erik",Fall - ASEN 3712: Structures,1
-"Knudsen, Erik","Fall and Spring - ASEN 4018: Senior Projects (PAB Member, 8 people)",1
+"Knudsen, Erik",Fall - GEEN 1400: Freshman Projects,4
+"Knudsen, Erik",Spring - GEEN 1400: Freshman Projects,4
+"Knudsen, Erik",Fall - ASEN 3712: Structures,4
+"Knudsen, Erik","Fall and Spring - ASEN 4018: Senior Projects (PAB Member, 8 people)",4
 ,,
 "Koehler, Christopher",,
 ,,
@@ -139,7 +147,11 @@ Faculty,Course,Preference
 "Lopez Jimenez, Francisco",Fall - ASEN 2401: Statics,4
 "Lopez Jimenez, Francisco",Spring - ASEN 2401: Statics,5
 ,,
-"Macdonald, Robyn",,
+"Macdonald, Robyn",Fall - ASEN 3711: Aerodynamics,1
+"Macdonald, Robyn",Fall - ASEN 4013: Foundations of Propulsion,1
+"Macdonald, Robyn",Fall - ASEN 3713: Thermodynamics and Heat Transfer,3
+"Macdonald, Robyn",Spring - ASEN 3711: Aerodynamics,4
+"Macdonald, Robyn",Spring - ASEN 4013: Foundations of Propulsion,4
 ,,
 "Mah, John",Fall - ASEN 4138: Aircraft Design - Lecture and Lab,1
 "Mah, John",Spring - ASEN 4138: Aircraft Design - Lecture and Lab,1
@@ -175,13 +187,13 @@ Faculty,Course,Preference
 "Morton, Jade",Fall - ASEN 3300: Electronics - Lecture and Lab (Might be team taught: 1-2 people),1
 "Morton, Jade","Fall and Spring - ASEN 4018: Senior Projects (PAB Member, 8 people)",1
 "Morton, Jade",Spring - ASEN 3300: Electronics - Lecture and Lab (Might be team taught: 1-2 people),3
-"Morton, Jade",Fall - ASEN 1009: Undergrad Aerospace Seminar,3
-"Morton, Jade",Spring - ASEN 1009: Undergrad Aerospace Seminar,3
+"Morton, Jade",Fall - ASEN 1009: Undergrad Aerospace Seminar,4
+"Morton, Jade",Spring - ASEN 1009: Undergrad Aerospace Seminar,4
 ,,
 "Nabity, James","Fall and Spring - ASEN 4018: Senior Projects (PAB Member, 8 people)",1
 "Nabity, James",Fall - ASEN 4013: Foundations of Propulsion,1
 "Nabity, James",Fall - ASEN 3713: Thermodynamics and Heat Transfer,3
-"Nabity, James",Fall - ASEN 2402: Thermodynamics,3
+"Nabity, James",Fall - ASEN 2402: Thermodynamics,4
 "Nabity, James",Fall - ASEN 1009: Undergrad Aerospace Seminar,5
 ,,
 "Neogi, Sanghamitra",,
@@ -198,7 +210,11 @@ Faculty,Course,Preference
 "Palo, Scott","Fall and Spring - ASEN 4018: Senior Projects (PAB Member, 8 people)",4
 "Palo, Scott",Fall - GEEN 1400: Freshman Projects,5
 ,,
-"Peters, Sean",,
+"Peters, Sean",Fall - ASEN 3300: Electronics - Lecture and Lab (Might be team taught: 1-2 people),1
+"Peters, Sean","Fall and Spring - ASEN 4018: Senior Projects (PAB Member, 8 people)",1
+"Peters, Sean",Spring - ASEN 3300: Electronics - Lecture and Lab (Might be team taught: 1-2 people),3
+"Peters, Sean",Fall - GEEN 1400: Freshman Projects,4
+"Peters, Sean",Spring - GEEN 1400: Freshman Projects,5
 ,,
 "Rafi, Melvin",Spring - ASEN 2403: Dynamics (teaching 2 sections),1
 "Rafi, Melvin",Fall and Spring - ASEN 4018: Senior Projects (Course Director),2
@@ -234,11 +250,23 @@ Faculty,Course,Preference
 "Schwartz, Trudy",Spring - GEEN 1400: Freshman Projects,7
 "Schwartz, Trudy",Fall - ASEN 3300: Electronics - Lecture and Lab (Might be team taught: 1-2 people),8
 ,,
-"Shakiba, Maryam",,
+"Shakiba, Maryam",Spring - ASEN 3712: Structures,1
+"Shakiba, Maryam",Fall - ASEN 3712: Structures,2
+"Shakiba, Maryam",Spring - ASEN 2401: Statics,3
+"Shakiba, Maryam",Fall - ASEN 2401: Statics,4
+"Shakiba, Maryam",Spring - ASEN 3713: Thermodynamics and Heat Transfer,5
 ,,
-"Sternovsky, Zoltan",,
+"Sternovsky, Zoltan",Spring - ASEN 3300: Electronics - Lecture and Lab (Might be team taught: 1-2 people),1
+"Sternovsky, Zoltan","Fall and Spring - ASEN 4018: Senior Projects (PAB Member, 8 people)",2
+"Sternovsky, Zoltan",Fall - ASEN 3300: Electronics - Lecture and Lab (Might be team taught: 1-2 people),2
+"Sternovsky, Zoltan",Spring - ASEN 2403: Dynamics,4
+"Sternovsky, Zoltan",Fall - ASEN 2401: Statics,5
 ,,
-"Sunberg, Zachary",,
+"Sunberg, Zachary",Fall - ASEN 3728: Aircraft Dynamics,1
+"Sunberg, Zachary",Spring - ASEN 3728: Aircraft Dynamics,2
+"Sunberg, Zachary",Spring - ASEN 2403: Dynamics,3
+"Sunberg, Zachary","Fall and Spring - ASEN 4018: Senior Projects (PAB Member, 8 people)",4
+"Sunberg, Zachary",Fall - ASEN 1030: Intro to Computing - Lecture and Lab,5
 ,,
 "Wingate, Kathryn",Fall and Spring - ASEN 4018: Senior Projects (Course Director),1
 "Wingate, Kathryn","Fall and Spring - ASEN 4018: Senior Projects (PAB Member, 8 people)",2

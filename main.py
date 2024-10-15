@@ -10,9 +10,15 @@ from post_run_data_funcs import output_faculty_prefs, output_course_assignments,
 # Load the data
 faculty = pd.read_csv("inputs/faculty_w_TC.csv")
 courses = pd.read_csv("inputs/courses_w_TC.csv")
+# faculty = pd.read_csv("inputs/final_faculty_w_TC.csv")
+# courses = pd.read_csv("inputs/final_courses_w_TC.csv")
 
 survey_teaching = pd.read_csv("inputs/Teaching Survey.csv")
 survey_tenure = pd.read_csv("inputs/Tenure Survey.csv")
+# survey_teaching = pd.read_csv("inputs/Teaching 14th.csv")
+# survey_tenure = pd.read_csv("inputs/Tenure 14th.csv")
+
+forcing_list = pd.read_csv("inputs/forcings.csv")
 
 # Now put a linker which links the survey field name to the actual data
     # Can use survey_teaching.columns to get the column names
@@ -82,8 +88,8 @@ for idx, row in courses.iterrows(): # Each row of the survey
     split_TC = row["TC Per Split"]
 
     # Check, does total_TC / split_TC come out to a int?
-    if total_TC % split_TC == 0:
-        num_splits = total_TC // split_TC
+    if abs(total_TC % split_TC) < 1e-2:  # Using a small threshold for floating-point comparison
+        num_splits = round(total_TC / split_TC)
     else:
         print(f"Course {course} has a non-integer split TC amount!!!")
         exit()
@@ -159,6 +165,7 @@ prob += pulp.lpSum(cost_terms)
 ## Add the constraints
     # Constraint for each faculty member that they must meet their TC amount
     # Constraint for each course the total TC cannot be exceeded
+    # Constraint for all the forcings
 
 # Faculty TC constraint
     # Need a for loop that goes back into the course data to get the TC split amount
@@ -182,7 +189,7 @@ for faculty in faculty_list:
             constraints.append(split_TC * section * x[key])
 
     # Add the net TC constraint for this faculty
-    prob += pulp.lpSum(constraints) >= faculty.TC
+    prob += pulp.lpSum(constraints) == faculty.TC
 
 
 # Course TC constraint
@@ -195,8 +202,8 @@ for idx, row in courses.iterrows():
     multiple_sections = row["Allow Multiple Sections"]
 
     # Check, does total_TC / split_TC come out to a int?
-    if total_TC % split_TC == 0:
-        num_splits = total_TC // split_TC
+    if abs(total_TC % split_TC) < 1e-2:  # Using a small threshold for floating-point comparison
+        num_splits = round(total_TC / split_TC)
     else:
         print(f"Course {course} has a non-integer split TC amount!!!")
         exit()
@@ -221,13 +228,14 @@ for idx, row in courses.iterrows():
     prob += pulp.lpSum(constraints) <= total_TC
 
 
-# # Ensure John Mah teaches Aircraft Design in the fall
-# course_name = "Fall and Spring - ASEN 4018: Senior Projects (Course Director)"
-# faculty_name = "Mah, John"
-# section = 1  # Assuming he teaches one section
+# Now, add the forcings
+for idx, row in forcing_list.iterrows():
+    course = row["Course"]
+    faculty = row["Faculty"]
+    sections = row["Sections"]
 
-# # Create a decision variable for this specific assignment
-# prob += x[(faculty_name, course_name, section)] >= 1
+    # Add the forcing constraint
+    prob += x[(faculty, course, section)] == 1
 
 
 # Now, the optimization problem is set up, solve it!

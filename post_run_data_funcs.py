@@ -57,7 +57,7 @@ def print_course_assignments(x, faculty_list):
         print()  # New line before the next course
 
 
-def output_course_assignments(x, faculty_list, saveName = "outputs/course_assignments.csv"):
+def output_course_assignments(x, courses, faculty_list, saveName = "outputs/course_assignments.csv"):
 
     # Create a dictionary to store assignments grouped by courses
     course_assignments = {}
@@ -72,21 +72,29 @@ def output_course_assignments(x, faculty_list, saveName = "outputs/course_assign
                 if faculty.name == name:
                     break
 
+            preference = 99  # Default preference if course is not found
             for course_pref, pref in faculty.preferences.items():
                 if course in course_pref:
                     preference = pref
                     break
 
+            # Get the TC allocation for this course
+            tc_allocation = 0
+            for _, row in courses.iterrows():
+                if row['Course'] == course:
+                    tc_allocation = row['TC Per Split'] * section
+                    break
+
             if course not in course_assignments:
                 course_assignments[course] = []
             
-            course_assignments[course].append((name, section, preference))
+            course_assignments[course].append((name, section, preference, tc_allocation))
 
     # Create a list of dictionaries to store the course assignments
     course_assignments_list = []
     for course, assignments in course_assignments.items():
-        for name, section, preference in assignments:
-            course_assignments_list.append({"Course": course, "Faculty": name, "Sections Taught": section, "Preference": preference})
+        for name, section, preference, tc_allocation in assignments:
+            course_assignments_list.append({"Course": course, "Faculty": name, "Sections Taught": section,"TC Amount": tc_allocation, "Preference": preference})
         course_assignments_list.append({})
 
     course_assignments_df = pd.DataFrame(course_assignments_list)
@@ -96,7 +104,7 @@ def output_course_assignments(x, faculty_list, saveName = "outputs/course_assign
 def plot_preferences(x, n, courses, faculty_list):
 
     # Create a dictionary of preferences
-    pref_dict = {i: 0 for i in range(1, 9)}
+    pref_dict = {i: 0 for i in range(1, 10)}
 
     # Populate the dictionary with assignments
     for key, value in x.items():
@@ -108,6 +116,7 @@ def plot_preferences(x, n, courses, faculty_list):
                 if faculty.name == name:
                     break
 
+            preference = 9  # Default preference if course is not found
             for course_pref, pref in faculty.preferences.items():
                 if course in course_pref:
                     preference = pref

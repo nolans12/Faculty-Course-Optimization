@@ -8,17 +8,14 @@ from data_processing_funcs import Faculty, add_survey_data
 from post_run_data_funcs import output_faculty_prefs, output_course_assignments, print_course_assignments, plot_preferences
 
 # Load the data
-faculty = pd.read_csv("inputs/faculty_w_TC.csv")
-courses = pd.read_csv("inputs/courses_w_TC.csv")
-# faculty = pd.read_csv("inputs/final_faculty_w_TC.csv")
-# courses = pd.read_csv("inputs/final_courses_w_TC.csv")
+faculty = pd.read_csv("inputs/final_faculty_w_TC.csv")
+courses = pd.read_csv("inputs/final_courses_w_TC.csv")
 
 survey_teaching = pd.read_csv("inputs/Teaching Survey.csv")
 survey_tenure = pd.read_csv("inputs/Tenure Survey.csv")
-# survey_teaching = pd.read_csv("inputs/Teaching 14th.csv")
-# survey_tenure = pd.read_csv("inputs/Tenure 14th.csv")
 
 forcing_list = pd.read_csv("inputs/forcings.csv")
+banning_list = pd.read_csv("inputs/bannings.csv")
 
 # Now put a linker which links the survey field name to the actual data
     # Can use survey_teaching.columns to get the column names
@@ -64,9 +61,7 @@ output_faculty_prefs(faculty_list)
 ## Now, lets set up the optimization problem!
 
 # We need n, the number of faculty objects that actually have preferences (took the survey)
-    # Purge the faculty list of those who didn't take the survey
-faculty_list = [faculty for faculty in faculty_list if len(faculty.preferences) > 0]
-n = len(faculty_list) # TODO: should this be total number of TCs
+n = len(faculty_list) 
 
 
 ## Create the optimization instance
@@ -84,6 +79,7 @@ for idx, row in courses.iterrows(): # Each row of the survey
 
     # Get the data
     course = row["Course"] # unfortunately splitting the course to just shorted like "ASEN 3711" wont work for senior projets 
+
     total_TC = row["Total TC"]
     split_TC = row["TC Per Split"]
 
@@ -120,12 +116,17 @@ for idx, row in courses.iterrows(): # Each row of the survey
         # At the moment, preferences b/w different section amounts are counted the same
         # i.e. ASEN 2402 (teaching 1 section) and ASEN 2402 (teaching 2 sections) are counted the same cost, highest preference
         # this is only a option for teaching faculty anyways
-def cost(faculty, course): 
+def cost(faculty, course, sections): 
     """
     Cost function for the optimization problem.
 
     Input is a faculty object, and a course
     """
+
+    if course == "Fall - ASEN 4519: Special Topics": # This is purely to accoutn for the fact that teaching 5 sections of 4519 costs alot
+        multiplier = sections
+    else:
+        multiplier = 1
 
     # To account for fact could have (teaching 1 section) and (teaching 2 sections) for same course, cant just string match right from dict, have to loop
     for course_pref, pref in faculty.preferences.items():
@@ -133,7 +134,7 @@ def cost(faculty, course):
             return 2**(np.log2(n)*(pref - 1))
 
     # If the course is not in the preferences, return a very high cost
-    return int(1e25)
+    return multiplier * 2**(np.log2(n)*(9 - 1))
 
 # # ## Test cost funciton with "Hodgkinson, Bobby", Fall - ASEN 1030: Intro to Computing - Lecture and Lab (teaching 1 section)"
 # for faculty in faculty_list:
@@ -156,18 +157,18 @@ for key, value in x.items():
             break
 
     # Append the cost term to the list
-    cost_terms.append(cost(faculty, course) * x[key])
+    cost_terms.append(cost(faculty, course, section) * x[key])
 
 # Sum the list of cost terms, will be the objective function!
 prob += pulp.lpSum(cost_terms)
 
 
-## Add the constraints
-    # Constraint for each faculty member that they must meet their TC amount
-    # Constraint for each course the total TC cannot be exceeded
-    # Constraint for all the forcings
-
-# Faculty TC constraint
+# # Add the constraints
+#     Constraint for each faculty member that they must meet their TC amount
+#     Constraint for each course the total TC cannot be exceeded
+#     Constraint for all the forcings
+    
+## Faculty TC constraint
     # Need a for loop that goes back into the course data to get the TC split amount
 for faculty in faculty_list:
     faculty_name = faculty.name
@@ -189,21 +190,25 @@ for faculty in faculty_list:
             constraints.append(split_TC * section * x[key])
 
     # Add the net TC constraint for this faculty
-    prob += pulp.lpSum(constraints) == faculty.TC
+    prob += pulp.lpSum(constraints) >= faculty.TC
+    prob += pulp.lpSum(constraints) <= faculty.TC + 0.5
 
 
-# Course TC constraint
+## Course TC constraint
     # The total TC for each course cannot be exceeded
     # Need to loop through the courses and add a constraint for each
 for idx, row in courses.iterrows():
     course = row["Course"]
-    total_TC = row["Total TC"]
+    course_TC = row["Total TC"]
     split_TC = row["TC Per Split"]
     multiple_sections = row["Allow Multiple Sections"]
 
+    # if course == "Fall - ASEN 4519: Special Topics": # Skip this course, it has a ton of extra TC just as a buffer
+    #     continue
+
     # Check, does total_TC / split_TC come out to a int?
-    if abs(total_TC % split_TC) < 1e-2:  # Using a small threshold for floating-point comparison
-        num_splits = round(total_TC / split_TC)
+    if abs(course_TC % split_TC) < 1e-2:  # Using a small threshold for floating-point comparison
+        num_splits = round(course_TC / split_TC)
     else:
         print(f"Course {course} has a non-integer split TC amount!!!")
         exit()
@@ -224,25 +229,53 @@ for idx, row in courses.iterrows():
         if course_name == course:
             constraints.append(split_TC * section * x[key])
 
-    # Add the final constraint for this course
-    prob += pulp.lpSum(constraints) <= total_TC
+    # Add the final constraint for this course with a ±0.1 margin
+    prob += pulp.lpSum(constraints) >= course_TC - 0.1
+    # prob += pulp.lpSum(constraints) <= course_TC + 0.6
+    prob += pulp.lpSum(constraints) <= course_TC + 2.1   
 
 
-# Now, add the forcings
+## ALso add the constraint that a faculty cannot teach teh same course twice, used to not allow more than one section of a course
+for course in courses["Course"]:
+    for faculty in faculty_list:
+        constraints = []
+        for key, value in x.items():
+            name, course_name, section = key
+            if course_name == course and name == faculty.name:
+                constraints.append(x[key])
+        prob += pulp.lpSum(constraints) <= 1
+
+
+## Now, add the forcings as a constraint
 for idx, row in forcing_list.iterrows():
     course = row["Course"]
     faculty = row["Faculty"]
     sections = row["Sections"]
 
-    # Add the forcing constraint
-    prob += x[(faculty, course, section)] == 1
+    # Additionally, find that faculty and add this forcing course as a #1 preference
+    for faculty_search in faculty_list:
+        if faculty_search.name == faculty:
+            faculty_search.preferences[course] = 1
 
+    # Add the forcing constraint
+    prob += x[(faculty, course, sections)] == 1
+
+## Also add banning contraints
+for idx, row in banning_list.iterrows():
+    # Set that decision variable to 0
+    faculty = row["Faculty"]
+    course = row["Course"]
+    for key, value in x.items():
+        name, course_name, section = key
+        if course_name == course and name == faculty:
+            prob += x[key] == 0
+           
 
 # Now, the optimization problem is set up, solve it!
 prob.solve()
 
 
 ## Outputs
-print_course_assignments(x, faculty_list)
-output_course_assignments(x, faculty_list)
+# print_course_assignments(x, faculty_list)
+output_course_assignments(x, courses, faculty_list)
 plot_preferences(x, n, courses, faculty_list)

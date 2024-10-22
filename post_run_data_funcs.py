@@ -133,3 +133,54 @@ def plot_preferences(x, n, courses, faculty_list):
     plt.title("Number of Assignments for Each Preference")
     plt.show()
 
+
+def plot_preferences_2(x, n, courses, faculty_list):
+
+    # Define the names of the teaching faculty:
+    teaching = ["Glusman, Jeff", "Hoke, Charles", "Hodgkinson, Bobby", "Knudsen, Erik", "Le Moine, Alexandra", "Mah, John", "Rafi, Melvin", "Wingate, Kathryn", "Scott, Hank", "Rhode, Matt", "Schwartz, Trudy"]
+
+    # Now, make one plot, but it has two different colros for the preferences.
+    # In blue is the tenure preferences, in red is the teaching preferences.
+
+    pref_tenure = {i: 0 for i in range(1, 10)}
+    pref_teaching = {i: 0 for i in range(1, 10)}
+
+    # Populate the dictionary with assignments
+    for key, value in x.items():
+        if value.varValue == 1:
+            name, course, section = key
+
+            # get that profs preference
+            for faculty in faculty_list:
+                if faculty.name == name:
+                    break
+
+            preference = 9  # Default preference if course is not found
+            for course_pref, pref in faculty.preferences.items():
+                if course in course_pref:
+                    preference = pref
+                    break
+
+            if faculty.name in teaching:
+                pref_teaching[preference] += 1
+            else:
+                pref_tenure[preference] += 1
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+
+    # Plot tenure preferences in blue
+    ax.bar(pref_tenure.keys(), pref_tenure.values(), color="blue", label="Tenure Faculty")
+
+    # Stack teaching preferences on top in red
+    ax.bar(pref_teaching.keys(), pref_teaching.values(), color="red", 
+           bottom=list(pref_tenure.values()), label="Teaching Faculty")
+
+    ax.set_xlabel("Preference")
+    ax.set_ylabel("Number of Assignments")
+    ax.set_title("Faculty Preferences")
+    ax.set_xticks(list(pref_tenure.keys()))
+    ax.grid(axis='y', linestyle='--', alpha=0.7)
+    ax.legend()
+
+    plt.tight_layout()
+    plt.show()

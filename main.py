@@ -5,7 +5,7 @@ import pandas as pd
 import pulp
 
 from data_processing_funcs import Faculty, add_survey_data
-from post_run_data_funcs import output_faculty_prefs, output_course_assignments, print_course_assignments, plot_preferences
+from post_run_data_funcs import output_faculty_prefs, output_course_assignments, print_course_assignments, plot_preferences, plot_preferences_2
 
 # Load the data
 faculty = pd.read_csv("inputs/final_faculty_w_TC.csv")
@@ -293,4 +293,4 @@ prob.solve()
 ## Outputs
 # print_course_assignments(x, faculty_list)
 output_course_assignments(x, courses, faculty_list)
-plot_preferences(x, n, courses, faculty_list)
+plot_preferences_2(x, n, courses, faculty_list)

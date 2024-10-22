@@ -11,8 +11,8 @@ from post_run_data_funcs import output_faculty_prefs, output_course_assignments,
 faculty = pd.read_csv("inputs/final_faculty_w_TC.csv")
 courses = pd.read_csv("inputs/final_courses_w_TC.csv")
 
-survey_teaching = pd.read_csv("inputs/Teaching Survey.csv")
-survey_tenure = pd.read_csv("inputs/Tenure Survey.csv")
+survey_teaching = pd.read_csv("inputs/teaching_final_survey.csv")
+survey_tenure = pd.read_csv("inputs/tenure_final_survey.csv")
 
 forcing_list = pd.read_csv("inputs/forcings.csv")
 banning_list = pd.read_csv("inputs/bannings.csv")
@@ -92,6 +92,7 @@ for idx, row in courses.iterrows(): # Each row of the survey
 
     multiple_sections = row["Allow Multiple Sections"] # will either be nan or true
     # Now check, if Allow Multiple Sections isn't true (false), then just one decision variable
+
     if pd.isna(multiple_sections):
         num_splits = 1
 
@@ -191,7 +192,7 @@ for faculty in faculty_list:
 
     # Add the net TC constraint for this faculty
     prob += pulp.lpSum(constraints) >= faculty.TC
-    prob += pulp.lpSum(constraints) <= faculty.TC + 0.5
+    prob += pulp.lpSum(constraints) <= faculty.TC + 0.3
 
 
 ## Course TC constraint
@@ -203,8 +204,8 @@ for idx, row in courses.iterrows():
     split_TC = row["TC Per Split"]
     multiple_sections = row["Allow Multiple Sections"]
 
-    # if course == "Fall - ASEN 4519: Special Topics": # Skip this course, it has a ton of extra TC just as a buffer
-    #     continue
+    if course == "Fall - ASEN 4519: Special Topics": # Skip this course, it has a ton of extra TC just as a buffer
+        continue
 
     # Check, does total_TC / split_TC come out to a int?
     if abs(course_TC % split_TC) < 1e-2:  # Using a small threshold for floating-point comparison
@@ -235,7 +236,7 @@ for idx, row in courses.iterrows():
     prob += pulp.lpSum(constraints) <= course_TC + 2.1   
 
 
-## ALso add the constraint that a faculty cannot teach teh same course twice, used to not allow more than one section of a course
+## Also add the constraint that a faculty cannot teach the same course twice, used to not allow more than one section of a course
 for course in courses["Course"]:
     for faculty in faculty_list:
         constraints = []
@@ -244,6 +245,19 @@ for course in courses["Course"]:
             if course_name == course and name == faculty.name:
                 constraints.append(x[key])
         prob += pulp.lpSum(constraints) <= 1
+
+
+# # Also add the constraint that no faculty can teach senior projects for more than 2 TCs
+# This way teaching faculty can get 2 TC from projects, otherwise tenure get 1
+for course in courses["Course"]:
+    if course == "Fall and Spring - ASEN 4018: Senior Projects (PAB Member, 8 people)":
+        for faculty in faculty_list:
+            constraint = []
+            for key, value in x.items():
+                name, course_name, section = key
+                if name == faculty.name and course_name == course:
+                    constraint.append(x[key] * section)
+            prob += pulp.lpSum(constraint) <= 2
 
 
 ## Now, add the forcings as a constraint
@@ -259,6 +273,7 @@ for idx, row in forcing_list.iterrows():
 
     # Add the forcing constraint
     prob += x[(faculty, course, sections)] == 1
+
 
 ## Also add banning contraints
 for idx, row in banning_list.iterrows():

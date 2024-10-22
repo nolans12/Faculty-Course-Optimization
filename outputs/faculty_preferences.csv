@@ -29,7 +29,8 @@ Faculty,Course,Preference
 "Arquilla, Katya",Fall - COEN 1830: Special Topics,4
 "Arquilla, Katya",Spring - COEN 1830: Special Topics,4
 ,,
-"Arya, Vishala",,
+"Arya, Vishala",Fall - ASEN 3700: Orbital Mechanics/Attitude Dynamics and Control,1
+"Arya, Vishala","Fall and Spring - ASEN 4018: Senior Projects (PAB Member, 8 people)",2
 ,,
 "Axelrad, Penny",Spring - ASEN 2403: Dynamics,1
 "Axelrad, Penny",Spring - ASEN 3801: Vehicle Dynamics and Control Lab (Might be team taught: 1-2 people),2
@@ -37,7 +38,7 @@ Faculty,Course,Preference
 "Axelrad, Penny",Fall - ASEN 3700: Orbital Mechanics/Attitude Dynamics and Control,4
 "Axelrad, Penny",Fall - ASEN 3801: Vehicle Dynamics and Control Lab (Might be team taught: 1-2 people),5
 ,,
-"Bosanac, Natasha",,
+"Bosanac, Natasha",Please Select A Class,1
 ,,
 "Chu, Xinzhao",Spring - ASEN 3713: Thermodynamics and Heat Transfer,1
 "Chu, Xinzhao",Spring - ASEN 3300: Electronics - Lecture and Lab (Might be team taught: 1-2 people),1
@@ -300,4 +301,8 @@ Faculty,Course,Preference
 "Khan, Alia",Fall - COEN 1830: Special Topics,3
 "Khan, Alia",Spring - ASEN 1009: Undergrad Aerospace Seminar,4
 "Khan, Alia",Fall - ASEN 3713: Thermodynamics and Heat Transfer,5
+,,
+"Scott, Hank",,
+,,
+Professor X,,
 ,,

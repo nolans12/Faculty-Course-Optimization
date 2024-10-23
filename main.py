@@ -191,7 +191,7 @@ for faculty in faculty_list:
             constraints.append(split_TC * section * x[key])
 
     # Add the net TC constraint for this faculty
-    prob += pulp.lpSum(constraints) >= faculty.TC
+    prob += pulp.lpSum(constraints) >= faculty.TC - 0.3
     prob += pulp.lpSum(constraints) <= faculty.TC + 0.3
 
 
